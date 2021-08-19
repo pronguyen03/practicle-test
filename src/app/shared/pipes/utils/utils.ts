@@ -1,15 +1,16 @@
 import { IRatio } from "src/app/components/question";
+import { Ratio } from "./ratio";
 
 export class Utils {
   static greatestCommonDivisor(a: number, b: number): number {
-    if (a == 0 || b == 0) {
+    if (a === 0 || b === 0) {
       return a + b;
     }
 
-    while (a != b) {
+    while (a !== b) {
       if (a > b) {
         a -= b;
-      } else{
+      } else {
         b -= a;
       }
     }
@@ -25,7 +26,7 @@ export class Utils {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  static generateRatio(total: number = 0, isRightSideGreater: boolean = false): IRatio {
+  static generateRatio(total: number = 0, isRightSideGreater: boolean = false): Ratio {
     let left: number;
     let right: number;
 
@@ -39,27 +40,18 @@ export class Utils {
 
     if (isRightSideGreater) {
       if (left > right) {
-        return {
-          left: right,
-          right: left
-        }
+        return new Ratio(right, left);
       } else if (left === right) {
         return this.generateRatio(total, isRightSideGreater);
       } else {
-        return {
-          left,
-          right
-        }
+        return new Ratio(left, right);
       }
     }
 
-    return {
-      left,
-      right
-    }
+    return new Ratio(left, right);
   }
 
-  isPrime(num: number): boolean {
+  static isPrime(num: number): boolean {
     for (let index = 2, s = Math.sqrt(num); index < s; index++) {
       if (num % index === 0) {
         return false;
