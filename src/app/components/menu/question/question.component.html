@@ -1,0 +1,23 @@
+<div>
+  <button type="button" (click)="backToMenu()">Back To Menu</button>
+</div>
+<div *ngFor="let variation of variations; let i = index">
+  <h3 class="variation-header">{{ variation.name }}</h3>
+
+  <p [innerHtml]="variation.description"></p>
+
+  <div *ngIf="variation.options && variation.options.length">
+    <h4>Options:</h4>
+    <ng-container *ngFor="let option of variation.options; let optionIndex = index">
+      <p>
+        <input type="radio" [name]="'variation' + i" [value]="option.optionValue">
+        <span>{{ (optionIndex + 1 + 10).toString(36) + ') ' + option.optionValue }}</span>
+      </p>
+    </ng-container>
+  </div>
+
+  <div *ngIf="isSubmitted">
+    <h4>Worked Solution:</h4>
+    <p [innerHtml]="variation.solution"></p>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+.menu {
+  margin: auto;
+  display: flex;
+  text-align: center;
+  width: 900px;
+  .menu-item {
+    margin: 5px;
+    width: 300px;
+    padding: 20px;
+    background-color: orange;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 5px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
